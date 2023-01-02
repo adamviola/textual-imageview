@@ -1,5 +1,5 @@
 import math
-from typing import Optional
+from typing import Optional, Tuple
 
 from PIL import Image
 from rich.color import Color
@@ -16,9 +16,9 @@ class ImageView:
     Args:
         image (Image.Image): PIL image to render.
         zoom (int): Zoom level. Must be non-negative. Zoom increase -> zoom out.
-        origin_position (tuple[int, int]): Image position (x,y) of the top-left corner
+        origin_position (Tuple[int, int]): Image position (x,y) of the top-left corner
             of the container. Defaults to (0,0).
-        container_size (tuple[int, int], optional): Size of the container of the image
+        container_size (Tuple[int, int], optional): Size of the container of the image
             (w,h). If None, nothing is rendered. Defaults to None.
 
     Notes:
@@ -34,11 +34,11 @@ class ImageView:
         self,
         image: Image.Image,
         zoom: int = 0,
-        origin_position: tuple[int, int] = (0, 0),
-        container_size: Optional[tuple[int, int]] = None,
+        origin_position: Tuple[int, int] = (0, 0),
+        container_size: Optional[Tuple[int, int]] = None,
     ):
         self.images: dict[Zoom, Image.Image] = {}
-        self.segment_cache: dict[Zoom, dict[tuple[int, int], Segment]] = {}
+        self.segment_cache: dict[Zoom, dict[Tuple[int, int], Segment]] = {}
 
         self.image = image
         self._container_size = container_size
@@ -46,7 +46,7 @@ class ImageView:
         self.set_zoom(zoom)
         self.origin_position = origin_position
 
-    def zoom(self, delta: int, zoom_position: Optional[tuple[int, int]] = None):
+    def zoom(self, delta: int, zoom_position: Optional[Tuple[int, int]] = None):
         """Adjusts the zoom level of the image at the specified zoom image position. If
         no zoom position is specified, the center of the console is used.
 
@@ -57,7 +57,7 @@ class ImageView:
         """
         self.set_zoom(self._zoom + delta, zoom_position=zoom_position)
 
-    def set_zoom(self, zoom: int, zoom_position: Optional[tuple[int, int]] = None):
+    def set_zoom(self, zoom: int, zoom_position: Optional[Tuple[int, int]] = None):
         """Sets the zoom level of the image at the specified zoom image position. If
         no zoom position is specified, the center of the console is used.
 
@@ -156,8 +156,8 @@ class ImageView:
         self.origin_position = self.origin_position
 
     def rowcol_to_xy(
-        self, row: int, col: int, offset: tuple[int, int]
-    ) -> tuple[int, int]:
+        self, row: int, col: int, offset: Tuple[int, int]
+    ) -> Tuple[int, int]:
         """Converts a character position (row,col) to an image position (x,y) given the
         offset (number of rows, number of columns) between the top-left of the terminal
         and top-left of the widget.
@@ -167,7 +167,7 @@ class ImageView:
                 image y-value.
             col (int): Column of the terminal (starting from the left at 0) to convert
                 to an image x-value.
-            offset (tuple[int, int]): Offset (number of rows, number of columns) between
+            offset (Tuple[int, int]): Offset (number of rows, number of columns) between
                 the top-left of the terminal and top-left of the widget.
 
         Returns:
@@ -177,7 +177,7 @@ class ImageView:
         origin_x, origin_y = self.origin_position
         return origin_x + col - offset_col, origin_y + 2 * (row - offset_row)
 
-    def xy_to_rowcol(self, x: int, y: int, offset: tuple[int, int]) -> tuple[int, int]:
+    def xy_to_rowcol(self, x: int, y: int, offset: Tuple[int, int]) -> Tuple[int, int]:
         """Converts an image position (x,y) to a character position (row,col) given the
         offset (number of rows, number of columns) between the top-left of the terminal
         and top-left of the widget.
@@ -187,7 +187,7 @@ class ImageView:
                 image y-value.
             col (int): Column of the terminal (starting from the left at 0) to convert
                 to an image x-value.
-            offset (tuple[int, int]): Offset (number of rows, number of columns) between
+            offset (Tuple[int, int]): Offset (number of rows, number of columns) between
                 the top-left of the terminal and top-left of the widget.
 
         Returns:
@@ -198,11 +198,11 @@ class ImageView:
         return (y - origin_y) // 2 + offset_row, x - origin_x + offset_col
 
     @property
-    def origin_position(self) -> tuple[int, int]:
+    def origin_position(self) -> Tuple[int, int]:
         return self._origin_position
 
     @origin_position.setter
-    def origin_position(self, value: tuple[int, int]):
+    def origin_position(self, value: Tuple[int, int]):
         origin_x, origin_y = value
         img_w, img_h = self.zoomed_size
         if self._container_size is not None:
@@ -225,12 +225,12 @@ class ImageView:
         self._origin_position = origin_x, origin_y
 
     @property
-    def size(self) -> tuple[int, int]:
+    def size(self) -> Tuple[int, int]:
         """Size of the original image."""
         return self.image.size
 
     @property
-    def zoomed_size(self) -> tuple[int, int]:
+    def zoomed_size(self) -> Tuple[int, int]:
         """Size of the image at the current zoom level."""
         return self.images[self._zoom].size
 

@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "textual-imgview"
-description = ''
+description = 'A simple terminal-based image viewer.'
 readme = "README.md"
 requires-python = ">=3.7"
 license = "MIT"
@@ -21,7 +21,7 @@ classifiers = [
     "Programming Language :: Python :: Implementation :: CPython",
     "Programming Language :: Python :: Implementation :: PyPy",
 ]
-dependencies = ["rich", "textual", "Pillow"]
+dependencies = ["Pillow>=9.4.0", "rich>=13.0.0", "textual>=0.9.1"]
 dynamic = ["version"]
 
 [project.urls]
