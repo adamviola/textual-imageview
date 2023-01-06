@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "textual-imgview"
+name = "textual-imageview"
 description = 'A simple terminal-based image viewer.'
 readme = "README.md"
 requires-python = ">=3.7"
@@ -25,12 +25,12 @@ dependencies = ["Pillow>=9.4.0", "rich>=13.0.0", "textual>=0.9.1"]
 dynamic = ["version"]
 
 [project.urls]
-Documentation = "https://github.com/unknown/textual-imgview#readme"
-Issues = "https://github.com/unknown/textual-imgview/issues"
-Source = "https://github.com/unknown/textual-imgview"
+Documentation = "https://github.com/adamviola/textual-imageview#readme"
+Issues = "https://github.com/adamviola/textual-imageview/issues"
+Source = "https://github.com/adamviola/textual-imageview"
 
 [project.scripts]
-vimg = "textual_imgview.app:vimg"
+vimg = "textual_imageview.app:vimg"
 
 [tool.hatch.version]
-path = "textual_imgview/__about__.py"
+path = "textual_imageview/__about__.py"

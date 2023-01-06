@@ -7,8 +7,8 @@ from textual.app import App, ComposeResult
 from textual.binding import Binding
 from textual.widgets import Footer, Header
 
-from textual_imgview.__about__ import __version__
-from textual_imgview.viewer import ImageViewer
+from textual_imageview.__about__ import __version__
+from textual_imageview.viewer import ImageViewer
 
 
 class ImageViewerApp(App):
@@ -63,10 +63,7 @@ class ImageViewerApp(App):
 
 
 def vimg():
-    parser = ArgumentParser(
-        prog="imgview",
-        description="A simple terminal-based image viewer.",
-    )
+    parser = ArgumentParser(description="A simple terminal-based image viewer.")
     parser.add_argument("image_path", help="Path of image to view.")
     parser.add_argument(
         "-v",

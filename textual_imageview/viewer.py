@@ -5,7 +5,7 @@ from textual import events
 from textual.app import RenderResult
 from textual.widget import Widget
 
-from textual_imgview.img import ImageView
+from textual_imageview.img import ImageView
 
 
 class ImageViewer(Widget):
