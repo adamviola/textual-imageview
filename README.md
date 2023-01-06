@@ -3,7 +3,7 @@
 [![PyPI - Version](https://img.shields.io/pypi/v/textual-imageview.svg)](https://pypi.org/project/textual-imageview)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/textual-imageview.svg)](https://pypi.org/project/textual-imageview)
 
-TODO: GIF
+![cat](https://user-images.githubusercontent.com/43352940/210931390-ad1f47fc-2340-435e-8851-234b5fa96d0f.gif)
 
 `textual-imageview` is a both a CLI tool and Textual widget and for viewing images in the
 terminal.
