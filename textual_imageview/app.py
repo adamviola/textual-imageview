@@ -24,8 +24,8 @@ class ImageViewerApp(App):
         Binding("s,down", "move(0, -1)", "Down", show=True, key_display="S/↓"),
         Binding("a,left", "move(1, 0)", "Left", show=True, key_display="A/←"),
         Binding("d,right", "move(-1, 0)", "Right", show=True, key_display="D/→"),
-        Binding("e,=", "zoom(-1)", "Zoom In", show=True, key_display="Q/+"),
-        Binding("q,-", "zoom(1)", "Zoom Out", show=True, key_display="E/-"),
+        Binding("q,=", "zoom(-1)", "Zoom In", show=True, key_display="Q/+"),
+        Binding("e,-", "zoom(1)", "Zoom Out", show=True, key_display="E/-"),
         # Faster movement
         Binding("W,shift+up", "move(0, 3)", "Fast Up", show=False),
         Binding("S,shift+down", "move(0, -3)", "Fast Dowm", show=False),
