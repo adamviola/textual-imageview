@@ -12,10 +12,10 @@ from textual_imageview.viewer import ImageViewer
 
 
 class ImageViewerApp(App):
-    """"""
+    """Sample Textual app that uses the ImageViewer widget to view images. This app
+    also includes keyboard suppport for translating and scaling the image."""
 
     TITLE = "vimg"
-    SUB_TITLE = "test"
 
     BINDINGS = [
         Binding("ctrl+c", "quit", "Quit", priority=True),
@@ -36,6 +36,11 @@ class ImageViewerApp(App):
     ]
 
     def __init__(self, image_path: Union[str, Path]):
+        """Inits vimg
+
+        Args:
+            image_path (Path or str): Path of image to view.
+        """
         super().__init__()
         image_path = Path(image_path)
         if not image_path.exists():
@@ -63,6 +68,7 @@ class ImageViewerApp(App):
 
 
 def vimg():
+    """CLI entry point"""
     parser = ArgumentParser(description="A simple terminal-based image viewer.")
     parser.add_argument("image_path", help="Path of image to view.")
     parser.add_argument(
@@ -76,10 +82,4 @@ def vimg():
     args = parser.parse_args()
 
     app = ImageViewerApp(args.image_path)
-    app.run()
-
-
-if __name__ == "__main__":
-    # vimg()
-    app = ImageViewerApp("img.jpg")
     app.run()

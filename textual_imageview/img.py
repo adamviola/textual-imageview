@@ -271,6 +271,16 @@ class ImageView:
         return segments
 
     def get_segment(self, x: int, y: int) -> Segment:
+        """Computes the Segment (character + style) at a particular image position.
+        Segments are cached because profiling suggested that the instantiation of Color
+        and Style objects was taxing.
+
+        Args:
+            x (int): Image x-coordinate of returned segment.
+            y (int): Image y-coordinate of returned segment. Note that the y-coordinate
+                refers to the top half of the segment, as each character corresponds to
+                two pixels.
+        """
         position = (x, y)
         image = self.images[self._zoom]
         cache = self.segment_cache[self._zoom]
